@@ -43,6 +43,6 @@ class OauthController < ApplicationController
       end
     end
 
-		redirect_to root_path(:token => token)
+		redirect_to root_path
 	end
 end
