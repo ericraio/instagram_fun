@@ -1,0 +1,8 @@
+class LogoutController < ApplicationController
+	def index
+		logger.info 'resetting session'
+		session[:user] = nil
+		session[:logout] = true
+		redirect_to :controller => 'home' and return false
+	end
+end

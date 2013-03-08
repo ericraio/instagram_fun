@@ -1,0 +1,6 @@
+<div id="feed">
+	<% if ( @photos && !@photos.empty? ) -%>
+		<%= render :partial => 'shared/photo', :collection => @photos, :locals => { :comments => nil } %>
+	<% end -%>
+</div>
+<p id="more"><%= link_to 'more', { :action => 'index', :max_id => @last_id }, :remote => true %></p>

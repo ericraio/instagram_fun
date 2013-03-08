@@ -1,0 +1,3 @@
+<% if ( @photos && !@photos.empty? ) -%>
+	<%= render :partial => 'shared/photo', :collection => @photos, :locals => { :comments => nil } %>
+<% end -%>

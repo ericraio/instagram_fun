@@ -1,0 +1,6 @@
+<% if ( @users && !@users.empty? ) -%>
+	<div id="users">
+		<%= render :partial => 'shared/user', :collection => @users %>
+	</div>
+<% else -%>
+<% end -%>

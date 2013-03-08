@@ -1,0 +1,4 @@
+<p class="h_comment">
+	<span class="p_comment"><%= h(comment.text) %></span><br/>
+	<span class="p_commenter"><%= link_to comment.from.username, :controller => 'user', :id => comment.from.id %></span>
+</p>

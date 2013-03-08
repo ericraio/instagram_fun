@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= @title %></title>
+		  <%= stylesheet_link_tag    "application" %>
+		  <%= javascript_include_tag "application" %>
+		  <%= csrf_meta_tags %>
+	</head>
+	<body>
+		<div id="a_nav">
+			<ul>
+				<% if @user && @client %>
+					<li>Hello <%= @user.username %></li>
+					<li><%= link_to "Feed", :controller => 'home' %></li>
+					<li><%= link_to "Photos #{@user.media}", :controller => 'user' %></li>
+					<li><%= link_to "Following #{@user.follows}", :controller => 'following' %></li>
+					<li><%= link_to "Followers #{@user.followed_by}", :controller => 'followers' %></li>
+					<li><%= link_to 'Logout', :controller => 'logout' %></li>
+				<% end %>
+			</ul>
+		</div>
+		<h1><%= @title %></h1>
+
+		<%= yield %>
+	</body>
+</html>

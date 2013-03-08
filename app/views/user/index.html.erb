@@ -1,0 +1,27 @@
+<% if ( @view_user.bio && !@view_user.bio.empty? ) -%>
+	<p id="u_bio"><%= h( @view_user.bio ) %></p>
+<% end -%>
+<% if ( @view_user.website && !@view_user.website.empty? ) -%>
+	<p id="u_website"><a target="_new" href="<%= @view_user.website %>"><%= @view_user.website %></a></p>
+<% end -%>
+<p id="u_counts">
+	photos <%= @view_user.counts.media %>
+	&ndash;
+	<% if ( @view_user.counts.follows ) -%>
+		<%= link_to "following #{@view_user.counts.follows}", :controller => 'following', :id => @view_user.id %>
+	<% else -%>
+		following nobody
+	<% end -%>
+	&ndash;
+	<% if ( @view_user.counts.followed_by ) -%>
+		<%= link_to "followed by #{@view_user.counts.followed_by}", :controller => 'followers', :id => @view_user.id %>
+	<% else -%>
+		followed by nobody
+	<% end -%>
+</p>
+<div id="feed">
+	<% if ( @photos && !@photos.empty? ) -%>
+		<%= render :partial => 'shared/photo', :collection => @photos, :locals => { :comments => nil } %>
+	<% end -%>
+</div>
+<p id="more"><%= link_to 'more', { :action => 'index', :max_id => @last_id }, :remote => true %></p>

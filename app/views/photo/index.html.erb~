@@ -1,0 +1,20 @@
+<div class="h_bigphoto">
+	<%= render :partial => 'shared/photo', :locals => { :photo => @photo, :comments => @comments } %>
+	<p class="h_user"><%= link_to @photo.user.username, :controller => 'user', :id => @photo.user.id %></p>
+	<% if ( @photo.location && !@photo.location.blank? ) -%><p class="h_geo">at <%= h( @photo.location.name ) %></p><% end -%>
+	<% if ( @photo.location && !@photo.location.blank? ) -%><p class="h_geo">at <%= link_to h( @photo.location.name ), :controller => 'location', :id => @photo.location.id %></p><% end -%>
+	<%= image_tag( @photo.images.standard_resolution.url, :border => 0 ) %>
+	<% if ( @photo.caption && !@photo.caption.textblank? ) -%><p class="h_caption"><%= h( @photo.caption.text ) %></p><% end -%>
+	<% if ( @likes && @likes.any? ) -%>
+		<p class="h_likes">
+			<%= @photo.likes[:count] %> likes: 
+			<%= render :partial => 'shared/like', :collection => @likes %>
+		</p>
+	<% end -%>
+	<% if ( @comments && @comments.any? ) -%>
+		<p class="h_comments">
+			<%= @photo.comments[:count] %> comments 
+		</p>
+		<%= render :partial => 'shared/comment', :collection => @comments %>
+	<% end -%>
+</div>

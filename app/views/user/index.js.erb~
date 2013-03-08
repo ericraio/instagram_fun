@@ -1,0 +1,5 @@
+<% unless @photos.blank? -%>
+	$('#feed').append( "<%= escape_javascript( render :partial => 'shared/photo', :collection => @photos, :locals => { :comments => nil } ) %>" );
+	$('#more').html( "<%= escape_javascript( link_to 'more', { :action => 'index', :max_id => @last_id }, :remote => true ) %>" );
+	$('html, body').animate( { scrollTop: $("#<%= @first_id %>").offset().top }, 500 );
+<% end -%>
