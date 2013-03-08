@@ -35,7 +35,7 @@ class OauthController < ApplicationController
     @client = Instagram.client(:access_token => token)
 
     if @response && @response.user && token
-      @user = User.where(:token => token).first_or_create
+      @user = User.find_or_create_by_token(token)
       if @user
         user_params = @response.user.to_hash.merge!(@client.user.counts.to_hash)
         @user.update_attributes(user_params)
